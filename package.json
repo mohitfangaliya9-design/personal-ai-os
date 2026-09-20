@@ -1,0 +1,30 @@
+{
+  "name": "personal-ai-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test",
+    "check": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/node": "latest",
+    "@modelcontextprotocol/server": "latest",
+    "@fastify/static": "latest",
+    "fastify": "latest",
+    "dotenv": "latest",
+    "node-cron": "latest",
+    "pg": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/pg": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}

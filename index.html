@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personal AI OS</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app">
+  <header><div><div class="eyebrow">PERSONAL AI OS</div><h1>Your AI Control Center</h1></div><span id="health" class="pill">Checking…</span></header>
+  <main>
+    <section class="hero card"><h2>What should I do?</h2><textarea id="request" placeholder="Example: Create an automation that checks my configured source every morning and tells me if something important changed."></textarea><div class="row"><button id="run">Plan & Run</button><button class="secondary" id="refresh">Refresh</button></div></section>
+    <section class="grid">
+      <div class="card"><h3>Agents</h3><div id="agents" class="list">Loading…</div></div>
+      <div class="card"><h3>Recent tasks</h3><div id="tasks" class="list">Loading…</div></div>
+    </section>
+    <section class="card"><h3>System architecture</h3><div class="architecture"><span>YOU</span><b>→</b><span>AI ORCHESTRATOR</span><b>→</b><span>AGENTS / WORKFLOWS</span><b>→</b><span>CUSTOM MCP</span><b>→</b><span>TOOLS / APIs</span></div><p class="muted">External side effects are not invented. Sensitive actions can pause for approval.</p></section>
+    <pre id="output" class="output"></pre>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body></html>
