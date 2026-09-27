@@ -13,7 +13,7 @@
  * created for it; the orchestrator owns the truth of what happened next.
  *
  * Preserved exports: registerSchedule(...), startScheduler()
- * New, additive exports: stopScheduler(), unregisterSchedule(),
+ * Additive exports: stopScheduler(), unregisterSchedule(),
  * isScheduleRegistered(), listActiveSchedules(), getSchedulerStatus()
  * -----------------------------------------------------------------------
  */
@@ -43,7 +43,14 @@ interface ScheduleMetadata {
   lastError: string | null;
 }
 
-interface ScheduleRow {
+/**
+ * Row shape returned by the `schedules` table SELECT in startScheduler().
+ *
+ * Extends Record<string, unknown> so it satisfies db.ts's `Row` type
+ * constraint (which requires a string index signature) while still
+ * preserving strong, explicit typing for every known column used here.
+ */
+interface ScheduleRow extends Record<string, unknown> {
   id: string;
   workflow_id: string;
   cron: string;
