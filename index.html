@@ -1,21 +1,111 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Personal AI OS</title><link rel="stylesheet" href="/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Personal AI OS control center — plan and run tasks, review agents, and monitor system health through a single dashboard.">
+<meta name="theme-color" content="#0b1120">
+<title>Personal AI OS — Control Center</title>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <div class="app">
-  <header><div><div class="eyebrow">PERSONAL AI OS</div><h1>Your AI Control Center</h1></div><span id="health" class="pill">Checking…</span></header>
+
+  <header>
+    <div>
+      <div class="eyebrow">PERSONAL AI OS</div>
+      <h1>Your AI Control Center</h1>
+    </div>
+    <span id="health" class="pill" role="status" aria-live="polite" aria-atomic="true">Checking…</span>
+  </header>
+
   <main>
-    <section class="hero card"><h2>What should I do?</h2><textarea id="request" placeholder="Example: Create an automation that checks my configured source every morning and tells me if something important changed."></textarea><div class="row"><button id="run">Plan & Run</button><button class="secondary" id="refresh">Refresh</button></div></section>
-    <section class="grid">
-      <div class="card"><h3>Agents</h3><div id="agents" class="list">Loading…</div></div>
-      <div class="card"><h3>Recent tasks</h3><div id="tasks" class="list">Loading…</div></div>
+
+    <section class="hero card" aria-labelledby="command-heading">
+      <h2 id="command-heading">What should I do?</h2>
+      <p class="muted">
+        Describe a task in plain language. Requests are planned first, and anything sensitive can pause for your approval before it runs.
+      </p>
+
+      <label for="request" class="sr-only">Describe what you want the AI to do</label>
+      <textarea
+        id="request"
+        rows="4"
+        aria-describedby="command-hint"
+        placeholder="Example: Create an automation that checks my configured source every morning and tells me if something important changed."
+      ></textarea>
+      <p id="command-hint" class="muted">
+        Try things like planning a task, organizing information, or setting up an automation.
+      </p>
+
+      <div class="row">
+        <button id="run" type="button">Plan &amp; Run</button>
+        <button class="secondary" id="refresh" type="button">Refresh</button>
+      </div>
     </section>
-    <section class="card"><h3>System architecture</h3><div class="architecture"><span>YOU</span><b>→</b><span>AI ORCHESTRATOR</span><b>→</b><span>AGENTS / WORKFLOWS</span><b>→</b><span>CUSTOM MCP</span><b>→</b><span>TOOLS / APIs</span></div><p class="muted">External side effects are not invented. Sensitive actions can pause for approval.</p></section>
-    <pre id="output" class="output"></pre>
+
+    <section aria-labelledby="output-heading">
+      <h2 id="output-heading" class="sr-only">Task output</h2>
+      <pre id="output" class="output" role="status" aria-live="polite"></pre>
+    </section>
+
+    <section class="grid" aria-label="System overview">
+
+      <article class="card" aria-labelledby="agents-heading">
+        <h3 id="agents-heading">Agents</h3>
+        <p class="muted">Agents registered in this system and their assigned role.</p>
+        <div id="agents" class="list" role="status" aria-live="polite">Loading agents…</div>
+      </article>
+
+      <article class="card" aria-labelledby="tasks-heading">
+        <h3 id="tasks-heading">Recent tasks</h3>
+        <p class="muted">The latest tasks, their status, and whether approval is required.</p>
+        <div id="tasks" class="list" role="status" aria-live="polite">Loading recent tasks…</div>
+      </article>
+
+    </section>
+
+    <section class="card" aria-labelledby="workflows-heading">
+      <h3 id="workflows-heading">Workflows</h3>
+      <p class="muted">
+        Workflows let you define a reusable sequence of steps that can be run on demand or on a schedule.
+        Workflow management is not yet available in this dashboard.
+      </p>
+    </section>
+
+    <section class="card" aria-labelledby="architecture-heading">
+      <h3 id="architecture-heading">System architecture</h3>
+      <div class="architecture">
+        <span>YOU</span><b>→</b>
+        <span>AI / PLANNER</span><b>→</b>
+        <span>ORCHESTRATOR</span><b>→</b>
+        <span>AGENTS / WORKFLOWS</span><b>→</b>
+        <span>MCP</span><b>→</b>
+        <span>TOOLS / APIs</span>
+      </div>
+      <p class="muted">
+        Planning is separate from execution. Sensitive or high-risk actions can pause for your approval before anything runs.
+        External side effects are never invented — results are shown only when an underlying tool actually reports them.
+      </p>
+    </section>
+
+    <section class="card" aria-labelledby="trust-heading">
+      <h3 id="trust-heading">How this works</h3>
+      <ul class="list">
+        <li>Sensitive actions may require your explicit approval before they run.</li>
+        <li>External results are shown only when available from a connected tool or service.</li>
+        <li>Actions are routed through the configured orchestration and tool layers — nothing bypasses that path.</li>
+        <li>Task completion is never assumed; status always reflects what actually happened.</li>
+      </ul>
+    </section>
+
   </main>
+
+  <footer class="muted">
+    Personal AI OS — status and data above are loaded from the running system.
+  </footer>
+
 </div>
 <script src="/app.js"></script>
-</body></html>
+</body>
+</html>
